@@ -86,10 +86,10 @@ export default function SettingsDashboard() {
           linkedin: s.social_linkedin || ''
         });
       } else {
-        setMsg({ type: 'error', text: 'Failed to load system settings' });
+        setMsg({ type: 'error', text: 'Không tải được cài đặt' });
       }
     } catch {
-      setMsg({ type: 'error', text: 'Network connection failed' });
+      setMsg({ type: 'error', text: 'Lỗi kết nối mạng' });
     } finally {
       setLoading(false);
     }
@@ -127,13 +127,13 @@ export default function SettingsDashboard() {
         body: JSON.stringify(payload)
       });
       if (res.ok) {
-        setMsg({ type: 'success', text: 'Global configuration settings saved successfully' });
+        setMsg({ type: 'success', text: 'Đã lưu cài đặt thành công' });
       } else {
         const data = await res.json();
-        setMsg({ type: 'error', text: data.error || 'Failed to save settings' });
+        setMsg({ type: 'error', text: data.error || 'Lưu cài đặt thất bại' });
       }
     } catch {
-      setMsg({ type: 'error', text: 'Network connection failed' });
+      setMsg({ type: 'error', text: 'Lỗi kết nối mạng' });
     } finally {
       setSubmitting(false);
       setTimeout(() => setMsg(null), 4000);
@@ -144,7 +144,7 @@ export default function SettingsDashboard() {
   const addHeaderLink = () => {
     setHeader(prev => ({
       ...prev,
-      links: [...prev.links, { label: 'New Link', href: '#' }]
+      links: [...prev.links, { label: 'Liên kết mới', href: '#' }]
     }));
   };
 
@@ -186,7 +186,7 @@ export default function SettingsDashboard() {
   };
 
   const removeFooterCol = (colIndex) => {
-    if (!confirm('Are you sure you want to delete this footer column?')) return;
+    if (!confirm('Bạn có chắc muốn xóa cột này?')) return;
     setFooter(prev => ({
       ...prev,
       columns: prev.columns.filter((_, i) => i !== colIndex)
@@ -196,7 +196,7 @@ export default function SettingsDashboard() {
   const addFooterColLink = (colIndex) => {
     const updated = [...footer.columns];
     if (!updated[colIndex].links) updated[colIndex].links = [];
-    updated[colIndex].links.push({ label: 'New Link', href: '#' });
+    updated[colIndex].links.push({ label: 'Liên kết mới', href: '#' });
     setFooter(prev => ({ ...prev, columns: updated }));
   };
 
@@ -222,7 +222,7 @@ export default function SettingsDashboard() {
 
       {loading ? (
         <div className="adm-card" style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>
-          Loading system settings...
+          Đang tải cài đặt...
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '32px', alignItems: 'start' }}>
@@ -240,7 +240,7 @@ export default function SettingsDashboard() {
                 borderColor: activeTab === 'seo' ? 'var(--admin-primary)' : 'var(--admin-border)'
               }}
             >
-              🔍 Global SEO Setup
+              🔍 SEO chung Setup
             </button>
             <button
               onClick={() => setActiveTab('header')}
@@ -266,7 +266,7 @@ export default function SettingsDashboard() {
                 borderColor: activeTab === 'footer' ? 'var(--admin-primary)' : 'var(--admin-border)'
               }}
             >
-              🏢 Footer Configuration
+              🏢 Cấu hình chân trang
             </button>
             <button
               onClick={() => setActiveTab('social')}
@@ -288,7 +288,7 @@ export default function SettingsDashboard() {
               className="btn btn-primary"
               style={{ marginTop: '24px', padding: '12px' }}
             >
-              {submitting ? 'Saving...' : '💾 Save Settings'}
+              {submitting ? 'Đang lưu...' : '💾 Lưu cài đặt'}
             </button>
           </div>
 
@@ -299,11 +299,11 @@ export default function SettingsDashboard() {
             {activeTab === 'seo' && (
               <div>
                 <div className="adm-card-header">
-                  <div className="adm-card-title">🔍 Global Site Information & SEO</div>
+                  <div className="adm-card-title">🔍 Thông tin website & SEO</div>
                 </div>
                 <div className="adm-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div className="adm-form-group">
-                    <label className="adm-label">Global Meta Title</label>
+                    <label className="adm-label">Tiêu đề Meta (chung)</label>
                     <input
                       type="text"
                       className="adm-input"
@@ -314,18 +314,18 @@ export default function SettingsDashboard() {
                   </div>
 
                   <div className="adm-form-group">
-                    <label className="adm-label">Global Meta Description</label>
+                    <label className="adm-label">Mô tả Meta (chung)</label>
                     <textarea
                       className="adm-textarea"
                       rows={4}
                       value={seo.site_description}
                       onChange={e => setSeo({ ...seo, site_description: e.target.value })}
-                      placeholder="A short fallback description for pages lacking custom SEO tags..."
+                      placeholder="Mô tả dự phòng cho các trang chưa có thẻ SEO riêng..."
                     />
                   </div>
 
                   <div className="adm-form-group">
-                    <label className="adm-label">Global Meta Keywords</label>
+                    <label className="adm-label">Từ khóa Meta (chung)</label>
                     <input
                       type="text"
                       className="adm-input"
@@ -347,7 +347,7 @@ export default function SettingsDashboard() {
                 <div className="adm-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div className="adm-form-group">
-                      <label className="adm-label">Navbar Logo Text</label>
+                      <label className="adm-label">Chữ logo trên menu</label>
                       <input
                         type="text"
                         className="adm-input"
@@ -368,7 +368,7 @@ export default function SettingsDashboard() {
 
                   <div style={{ borderTop: '1px solid var(--admin-border)', paddingTop: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <label className="adm-label" style={{ marginBottom: 0 }}>Custom Navigation Links</label>
+                      <label className="adm-label" style={{ marginBottom: 0 }}>Liên kết menu</label>
                       <button type="button" onClick={addHeaderLink} className="btn btn-secondary btn-sm">
                         + Add Custom Link
                       </button>
@@ -386,7 +386,7 @@ export default function SettingsDashboard() {
                               type="text"
                               className="adm-input"
                               style={{ flex: 2 }}
-                              placeholder="Link Text (e.g. Docs)"
+                              placeholder="Nhãn liên kết (vd. Giới thiệu)"
                               value={link.label}
                               onChange={e => updateHeaderLink(idx, 'label', e.target.value)}
                             />
@@ -394,7 +394,7 @@ export default function SettingsDashboard() {
                               type="text"
                               className="adm-input"
                               style={{ flex: 3 }}
-                              placeholder="Href URL (e.g. /#pricing)"
+                              placeholder="Đường dẫn (vd. /products)"
                               value={link.href}
                               onChange={e => updateHeaderLink(idx, 'href', e.target.value)}
                             />
@@ -436,11 +436,11 @@ export default function SettingsDashboard() {
             {activeTab === 'footer' && (
               <div>
                 <div className="adm-card-header">
-                  <div className="adm-card-title">🏢 Global Footer Setup</div>
+                  <div className="adm-card-title">🏢 Thiết lập chân trang</div>
                 </div>
                 <div className="adm-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <div className="adm-form-group">
-                    <label className="adm-label">Copyright Notice Text</label>
+                    <label className="adm-label">Dòng bản quyền</label>
                     <input
                       type="text"
                       className="adm-input"
@@ -452,15 +452,15 @@ export default function SettingsDashboard() {
 
                   <div style={{ borderTop: '1px solid var(--admin-border)', paddingTop: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <label className="adm-label" style={{ marginBottom: 0 }}>Footer Link Columns</label>
+                      <label className="adm-label" style={{ marginBottom: 0 }}>Cột liên kết chân trang</label>
                       <button type="button" onClick={addFooterCol} className="btn btn-secondary btn-sm">
-                        + Add New Column
+                        + Thêm cột
                       </button>
                     </div>
 
                     {footer.columns.length === 0 ? (
                       <div style={{ color: 'var(--admin-muted)', fontSize: '13px', textAlign: 'center', padding: '24px', background: 'rgba(255,255,255,0.01)', borderRadius: '6px', border: '1px dashed var(--admin-border)' }}>
-                        No footer link columns created.
+                        Chưa có cột liên kết nào.
                       </div>
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -479,7 +479,7 @@ export default function SettingsDashboard() {
                                 type="text"
                                 className="adm-input"
                                 style={{ fontWeight: '600', maxWidth: '300px' }}
-                                placeholder="Column Title (e.g. Products)"
+                                placeholder="Tiêu đề cột (vd. Sản phẩm)"
                                 value={col.title}
                                 onChange={e => updateFooterColTitle(colIdx, e.target.value)}
                               />
@@ -488,7 +488,7 @@ export default function SettingsDashboard() {
                                 className="btn btn-danger btn-sm"
                                 onClick={() => removeFooterCol(colIdx)}
                               >
-                                🗑️ Delete Column
+                                🗑️ Xóa cột
                               </button>
                             </div>
 
@@ -499,7 +499,7 @@ export default function SettingsDashboard() {
                                     type="text"
                                     className="adm-input adm-input-sm"
                                     style={{ flex: 2 }}
-                                    placeholder="Label"
+                                    placeholder="Nhãn"
                                     value={link.label}
                                     onChange={e => updateFooterColLink(colIdx, linkIdx, 'label', e.target.value)}
                                   />
@@ -507,7 +507,7 @@ export default function SettingsDashboard() {
                                     type="text"
                                     className="adm-input adm-input-sm"
                                     style={{ flex: 3 }}
-                                    placeholder="Href URL"
+                                    placeholder="Đường dẫn URL"
                                     value={link.href}
                                     onChange={e => updateFooterColLink(colIdx, linkIdx, 'href', e.target.value)}
                                   />
@@ -528,7 +528,7 @@ export default function SettingsDashboard() {
                                 style={{ alignSelf: 'flex-start', marginTop: '6px', fontSize: '11px', padding: '4px 10px' }}
                                 onClick={() => addFooterColLink(colIdx)}
                               >
-                                + Add link item
+                                + Thêm liên kết
                               </button>
                             </div>
                           </div>

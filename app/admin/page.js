@@ -35,7 +35,7 @@ export default function AdminDashboardPage() {
         }
       }
     } catch (err) {
-      console.error('Failed to load dashboard data:', err);
+      console.error('Không tải được bảng điều khiển data:', err);
     } finally {
       setLoading(false);
     }
@@ -79,7 +79,7 @@ export default function AdminDashboardPage() {
       <AdminShell title="Bảng điều khiển">
         <div className="adm-card">
           <div className="adm-card-header">
-            <div className="adm-card-title">👤 Account Profile Details</div>
+            <div className="adm-card-title">👤 Thông tin tài khoản</div>
           </div>
           <div className="adm-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -96,7 +96,7 @@ export default function AdminDashboardPage() {
                 <strong style={{ fontSize: '18px' }}>{user?.email}</strong>
               </div>
               <div>
-                <span style={{ fontSize: '12px', color: 'var(--admin-muted)', display: 'block' }}>Account Rank / Tier</span>
+                <span style={{ fontSize: '12px', color: 'var(--admin-muted)', display: 'block' }}>Hạng tài khoản</span>
                 <span className="tier-tag" style={{ fontSize: '12px', padding: '4px 8px', marginTop: '4px', display: 'inline-block' }}>{user?.tier}</span>
               </div>
             </div>

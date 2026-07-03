@@ -83,8 +83,8 @@ export default function PostsPage() {
 
       <div className="adm-card">
         <div className="adm-card-header">
-          <div className="adm-card-title">📝 Product Updates ({filtered.length})</div>
-          <Link href="/admin/posts/new" className="btn btn-primary btn-sm">+ Create Changelog</Link>
+          <div className="adm-card-title">📝 Bài viết & Tin tức ({filtered.length})</div>
+          <Link href="/admin/posts/new" className="btn btn-primary btn-sm">+ Tạo bài viết</Link>
         </div>
 
         {/* Toolbar */}
@@ -94,15 +94,15 @@ export default function PostsPage() {
               <span className="adm-search-icon">🔍</span>
               <input
                 type="text"
-                placeholder="Search updates by title..."
+                placeholder="Tìm bài viết theo tiêu đề..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
             <select className="adm-filter-select" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-              <option value="">All Statuses</option>
-              <option value="published">Published</option>
-              <option value="draft">Draft</option>
+              <option value="">Tất cả trạng thái</option>
+              <option value="published">Đã đăng</option>
+              <option value="draft">Bản nháp</option>
             </select>
           </div>
         </div>
@@ -110,22 +110,22 @@ export default function PostsPage() {
         {/* Table list */}
         <div className="adm-table-wrap">
           {loading ? (
-            <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Loading updates...</div>
+            <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Đang tải...</div>
           ) : filtered.length === 0 ? (
             <div className="adm-empty">
               <div className="adm-empty-icon">📄</div>
-              <div className="adm-empty-text">No updates found</div>
-              <Link href="/admin/posts/new" className="btn btn-primary" style={{ marginTop: 16 }}>Create first changelog</Link>
+              <div className="adm-empty-text">Chưa có bài viết nào</div>
+              <Link href="/admin/posts/new" className="btn btn-primary" style={{ marginTop: 16 }}>Tạo bài viết đầu tiên</Link>
             </div>
           ) : (
             <table className="adm-table">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Status</th>
-                  <th>Views</th>
-                  <th>Published Date</th>
-                  <th>Actions</th>
+                  <th>Tiêu đề</th>
+                  <th>Trạng thái</th>
+                  <th>Lượt xem</th>
+                  <th>Ngày đăng</th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -140,7 +140,7 @@ export default function PostsPage() {
                         className={`badge ${post.status === 'published' ? 'badge-green' : 'badge-yellow'}`}
                         style={{ cursor: 'pointer', border: 'none', fontFamily: 'inherit' }}
                         onClick={() => toggleStatus(post)}
-                        title="Click to toggle status"
+                        title="Bấm để đổi trạng thái"
                       >
                         {post.status === 'published' ? '✓ Published' : '○ Draft'}
                       </button>

@@ -294,28 +294,28 @@ export default function FilesPage() {
           className={`btn ${activeTab === 'library' ? 'btn-primary' : 'btn-secondary'}`}
           onClick={() => { setActiveTab('library'); setFilterFolder(''); }}
         >
-          📁 Assets Library
+          📁 Thư viện Media
         </button>
         <button
           className={`btn ${activeTab === 'attachments' ? 'btn-primary' : 'btn-secondary'}`}
           onClick={() => { setActiveTab('attachments'); setFilterFolder(''); }}
         >
-          📎 Post Attachments
+          📎 Tệp đính kèm bài viết
         </button>
       </div>
 
       <div className="adm-card">
         <div className="adm-card-header">
           <div className="adm-card-title">
-            {activeTab === 'library' ? '📁 Assets Library' : '📎 Post Attachments'} ({currentList.length})
+            {activeTab === 'library' ? '📁 Thư viện Media' : '📎 Tệp đính kèm bài viết'} ({currentList.length})
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button className={`btn btn-sm ${viewMode === 'grid' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setViewMode('grid')}>⊞ Grid</button>
-            <button className={`btn btn-sm ${viewMode === 'list' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setViewMode('list')}>☰ List</button>
+            <button className={`btn btn-sm ${viewMode === 'grid' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setViewMode('grid')}>⊞ Lưới</button>
+            <button className={`btn btn-sm ${viewMode === 'list' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setViewMode('list')}>☰ Danh sách</button>
             {activeTab === 'library' && (
               <>
-                <button className="btn btn-secondary btn-sm" onClick={() => setShowCatModal(true)}>🗂️ Categories</button>
-                <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>↑ Upload File</button>
+                <button className="btn btn-secondary btn-sm" onClick={() => setShowCatModal(true)}>🗂️ Danh mục</button>
+                <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>↑ Tải tệp lên</button>
               </>
             )}
           </div>
@@ -325,10 +325,10 @@ export default function FilesPage() {
           <div className="adm-toolbar">
             <div className="adm-search-wrap">
               <span className="adm-search-icon">🔍</span>
-              <input type="text" placeholder="Search files by name..." value={search} onChange={e => setSearch(e.target.value)} />
+              <input type="text" placeholder="Tìm tệp theo tên..." value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <select className="adm-filter-select" value={filterType} onChange={e => setFilterType(e.target.value)}>
-              <option value="">All Types</option>
+              <option value="">Tất cả loại</option>
               <option value="image">🖼️ Images</option>
               <option value="video">🎬 Videos</option>
               <option value="pdf">📕 PDF</option>
@@ -343,14 +343,14 @@ export default function FilesPage() {
 
             {activeTab === 'library' ? (
               <select className="adm-filter-select" value={filterFolder} onChange={e => setFilterFolder(e.target.value)}>
-                <option value="">All Categories</option>
+                <option value="">Tất cả danh mục</option>
                 {categories.map(c => (
                   <option key={c.id} value={c.slug}>{c.name}</option>
                 ))}
               </select>
             ) : (
               <select className="adm-filter-select" value={filterFolder} onChange={e => setFilterFolder(e.target.value)}>
-                <option value="">All Articles</option>
+                <option value="">Tất cả bài viết</option>
                 {postCategories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
@@ -365,9 +365,9 @@ export default function FilesPage() {
           ) : currentList.length === 0 ? (
             <div className="adm-empty">
               <div className="adm-empty-icon">📁</div>
-              <div className="adm-empty-text">No files found matching filters</div>
+              <div className="adm-empty-text">Không tìm thấy tệp phù hợp</div>
               {activeTab === 'library' && (
-                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => setShowModal(true)}>Upload Your First Asset</button>
+                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => setShowModal(true)}>Tải tệp đầu tiên lên</button>
               )}
             </div>
           ) : viewMode === 'grid' ? (
@@ -427,14 +427,14 @@ export default function FilesPage() {
             <table className="adm-table">
               <thead>
                 <tr>
-                  <th>File Name</th>
-                  <th>Type</th>
-                  {activeTab === 'library' ? <th>Category</th> : <th>Linked Changelog</th>}
-                  <th>Size</th>
-                  <th>Downloads</th>
-                  <th>Privacy</th>
-                  <th>Uploaded Date</th>
-                  <th>Actions</th>
+                  <th>Tên tệp</th>
+                  <th>Loại</th>
+                  {activeTab === 'library' ? <th>Danh mục</th> : <th>Bài viết liên kết</th>}
+                  <th>Dung lượng</th>
+                  <th>Lượt tải</th>
+                  <th>Quyền riêng tư</th>
+                  <th>Ngày tải lên</th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -504,16 +504,16 @@ export default function FilesPage() {
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '90%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>📤 Upload New Asset</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>📤 Tải tệp mới lên</div>
               <button className="adm-modal-close" onClick={() => setShowModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <form onSubmit={handleUpload}>
               <div className="adm-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Select local file</label>
+                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Chọn tệp từ máy</label>
                   <div className="img-upload-zone" onClick={() => fileRef.current?.click()} style={{ border: '2px dashed #475569', background: 'rgba(255, 255, 255, 0.03)', color: '#e2e8f0', cursor: 'pointer', padding: '20px', borderRadius: '8px', textAlign: 'center' }}>
                     <div className="img-upload-icon" style={{ fontSize: '24px', marginBottom: '8px' }}>📁</div>
-                    <div className="img-upload-text" style={{ color: '#cbd5e1' }}>Click to browse file<br />
+                    <div className="img-upload-text" style={{ color: '#cbd5e1' }}>Bấm để chọn tệp<br />
                       <span style={{ fontSize: 11, color: '#94a3b8' }}>Images, PDF, Documents, Code — Max 10MB</span>
                     </div>
                   </div>
@@ -534,12 +534,12 @@ export default function FilesPage() {
 
                 <div style={{ display: 'flex', gap: '16px' }}>
                   <div className="adm-form-group" style={{ flex: 1 }}>
-                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Display Name *</label>
+                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Tên hiển thị *</label>
                     <input className="adm-input" value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })} required />
                   </div>
                   <div className="adm-form-group" style={{ flex: 1 }}>
-                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Storage Category</label>
+                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Danh mục lưu trữ</label>
                     <select className="adm-select" value={form.folder}
                       onChange={e => setForm({ ...form, folder: e.target.value })}>
                       {categories.map(c => (
@@ -550,7 +550,7 @@ export default function FilesPage() {
                 </div>
 
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>File Type</label>
+                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Loại tệp</label>
                   <select className="adm-select" value={form.type}
                     onChange={e => setForm({ ...form, type: e.target.value })}>
                     <option value="image">🖼️ Image</option>
@@ -567,19 +567,19 @@ export default function FilesPage() {
                 </div>
 
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Description</label>
-                  <textarea className="adm-textarea" style={{ minHeight: 60 }} placeholder="Write a short description..." value={form.description}
+                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Mô tả</label>
+                  <textarea className="adm-textarea" style={{ minHeight: 60 }} placeholder="Nhập mô tả ngắn..." value={form.description}
                     onChange={e => setForm({ ...form, description: e.target.value })} />
                 </div>
 
                 <div className="adm-form-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}>
                   <input type="checkbox" id="upload-is-public" checked={form.is_public === 1}
                     onChange={e => setForm({ ...form, is_public: e.target.checked ? 1 : 0 })} style={{ width: 'auto', margin: 0 }} />
-                  <label htmlFor="upload-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13, color: '#cbd5e1', fontWeight: '600' }}>Share publicly (Allow visitors to download)</label>
+                  <label htmlFor="upload-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13, color: '#cbd5e1', fontWeight: '600' }}>Chia sẻ công khai (cho phép khách tải xuống)</label>
                 </div>
               </div>
               <div className="adm-modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '20px' }}>
-                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Hủy</button>
                 <button type="submit" className="btn btn-primary" disabled={uploading}>
                   {uploading ? 'Uploading...' : '📤 Upload'}
                 </button>
@@ -594,13 +594,13 @@ export default function FilesPage() {
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '95%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>✏️ Edit Asset Metadata</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>✏️ Sửa thông tin tệp</div>
               <button className="adm-modal-close" onClick={() => setShowEditModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <form onSubmit={handleEditFile}>
               <div className="adm-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div className="adm-form-group">
-                  <label className="adm-label">Display Name *</label>
+                  <label className="adm-label">Tên hiển thị *</label>
                   <input className="adm-input" value={editForm.name}
                     onChange={e => setEditForm({ ...editForm, name: e.target.value })} required />
                 </div>
@@ -608,7 +608,7 @@ export default function FilesPage() {
                 {!editingFile.isAttach ? (
                   <>
                     <div className="adm-form-group">
-                      <label className="adm-label">Storage Category</label>
+                      <label className="adm-label">Danh mục lưu trữ</label>
                       <select className="adm-select" value={editForm.folder}
                         onChange={e => setEditForm({ ...editForm, folder: e.target.value })}>
                         {categories.map(c => (
@@ -617,26 +617,26 @@ export default function FilesPage() {
                       </select>
                     </div>
                     <div className="adm-form-group">
-                      <label className="adm-label">Description</label>
+                      <label className="adm-label">Mô tả</label>
                       <textarea className="adm-textarea" style={{ minHeight: 60 }} value={editForm.description}
                         onChange={e => setEditForm({ ...editForm, description: e.target.value })} />
                     </div>
                   </>
                 ) : (
                   <div className="adm-form-group">
-                    <label className="adm-label" style={{ color: 'var(--admin-muted)' }}>* Attached post assets inherit categories from their containing article.</label>
+                    <label className="adm-label" style={{ color: 'var(--admin-muted)' }}>* Tệp đính kèm bài viết kế thừa danh mục từ bài viết chứa nó.</label>
                   </div>
                 )}
 
                 <div className="adm-form-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}>
                   <input type="checkbox" id="edit-is-public" checked={editForm.is_public === 1}
                     onChange={e => setEditForm({ ...editForm, is_public: e.target.checked ? 1 : 0 })} style={{ width: 'auto', margin: 0 }} />
-                  <label htmlFor="edit-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13 }}>Share publicly (Allow visitors to download)</label>
+                  <label htmlFor="edit-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13 }}>Chia sẻ công khai (cho phép khách tải xuống)</label>
                 </div>
               </div>
               <div className="adm-modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '20px' }}>
-                <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)}>Hủy</button>
+                <button type="submit" className="btn btn-primary">Lưu thay đổi</button>
               </div>
             </form>
           </div>
@@ -660,7 +660,7 @@ export default function FilesPage() {
                   <button className="btn btn-secondary" onClick={() => {
                     navigator.clipboard.writeText(sharingFile.url);
                     showMsg('success', 'Copied Direct URL!');
-                  }}>Copy</button>
+                  }}>Sao chép</button>
                 </div>
                 <p style={{ marginTop: 4, fontSize: '11px', color: 'var(--admin-danger)', lineHeight: '1.4' }}>
                   ⚠️ Direct link to the asset on the storage server. Use this only for image/media source embeds.
@@ -669,13 +669,13 @@ export default function FilesPage() {
 
               {/* Public Download Page URL */}
               <div className="adm-form-group" style={{ marginBottom: 0 }}>
-                <label className="adm-label" style={{ fontWeight: 600 }}>Public Download Gateway Page</label>
+                <label className="adm-label" style={{ fontWeight: 600 }}>Trang tải xuống công khai</label>
                 <div style={{ display: 'flex', gap: 6 }}>
                   <input className="adm-input" readOnly value={`${window.location.origin}/download/${encodeId(sharingFile.isAttach ? 'a' : 'f', sharingFile.id)}`} />
                   <button className="btn btn-primary" onClick={() => {
                     navigator.clipboard.writeText(`${window.location.origin}/download/${encodeId(sharingFile.isAttach ? 'a' : 'f', sharingFile.id)}`);
                     showMsg('success', 'Copied Public Download Page link!');
-                  }}>Copy</button>
+                  }}>Sao chép</button>
                 </div>
                 <p style={{ marginTop: 4, fontSize: '11px', color: 'var(--admin-secondary)', lineHeight: '1.4' }}>
                   ✅ <strong>Recommended:</strong> Send this link for public user downloads. It masks target files and validates temporary download tokens.
@@ -701,12 +701,12 @@ export default function FilesPage() {
                         : `<a href="${window.location.origin}/download/${encodeId(sharingFile.isAttach ? 'a' : 'f', sharingFile.id)}" target="_blank">📎 Download ${sharingFile.name}</a>`;
                     navigator.clipboard.writeText(embedCode);
                     showMsg('success', 'Copied HTML Embed Code!');
-                  }}>Copy</button>
+                  }}>Sao chép</button>
                 </div>
               </div>
             </div>
             <div className="adm-modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-              <button type="button" className="btn btn-secondary" onClick={() => setShowShareModal(false)}>Close</button>
+              <button type="button" className="btn btn-secondary" onClick={() => setShowShareModal(false)}>Đóng</button>
             </div>
           </div>
         </div>
@@ -729,7 +729,7 @@ export default function FilesPage() {
                 <div style={{ display: 'flex', gap: 10 }}>
                   <div className="adm-form-group" style={{ marginBottom: 0, flex: 1 }}>
                     <label className="adm-label" style={{ fontSize: 11 }}>Category Name *</label>
-                    <input className="adm-input" style={{ fontSize: 12 }} placeholder="Tutorials, Screenshots, etc..." value={catForm.name} onChange={e => {
+                    <input className="adm-input" style={{ fontSize: 12 }} placeholder="Hướng dẫn, Ảnh chụp, v.v..." value={catForm.name} onChange={e => {
                       const name = e.target.value;
                       const slug = name.toLowerCase()
                         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -752,7 +752,7 @@ export default function FilesPage() {
                     <button type="button" className="btn btn-secondary btn-sm" onClick={() => {
                       setEditingCatId(null);
                       setCatForm({ name: '', slug: '' });
-                    }}>Cancel</button>
+                    }}>Hủy</button>
                   )}
                   <button type="submit" className="btn btn-primary btn-sm">
                     {editingCatId ? 'Update' : 'Add Category'}
@@ -767,9 +767,9 @@ export default function FilesPage() {
                 <table className="adm-table" style={{ margin: 0 }}>
                   <thead>
                     <tr style={{ background: 'rgba(0,0,0,0.4)' }}>
-                      <th style={{ padding: '8px 12px', fontSize: 12 }}>Name</th>
-                      <th style={{ padding: '8px 12px', fontSize: 12 }}>Slug</th>
-                      <th style={{ padding: '8px 12px', fontSize: 12, textAlign: 'right' }}>Actions</th>
+                      <th style={{ padding: '8px 12px', fontSize: 12 }}>Tên</th>
+                      <th style={{ padding: '8px 12px', fontSize: 12 }}>Định danh</th>
+                      <th style={{ padding: '8px 12px', fontSize: 12, textAlign: 'right' }}>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -781,9 +781,9 @@ export default function FilesPage() {
                           <button className="btn btn-secondary btn-sm" style={{ padding: '2px 6px', fontSize: 11, marginRight: 4 }} onClick={() => {
                             setEditingCatId(c.id);
                             setCatForm({ name: c.name, slug: c.slug });
-                          }}>Edit</button>
+                          }}>Sửa</button>
                           {c.slug !== 'general' && (
-                            <button className="btn btn-danger btn-sm" style={{ padding: '2px 6px', fontSize: 11 }} onClick={() => deleteCategory(c.id)}>Delete</button>
+                            <button className="btn btn-danger btn-sm" style={{ padding: '2px 6px', fontSize: 11 }} onClick={() => deleteCategory(c.id)}>Xóa</button>
                           )}
                         </td>
                       </tr>
@@ -793,7 +793,7 @@ export default function FilesPage() {
               </div>
             </div>
             <div className="adm-modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-              <button type="button" className="btn btn-secondary" onClick={() => setShowCatModal(false)}>Close</button>
+              <button type="button" className="btn btn-secondary" onClick={() => setShowCatModal(false)}>Đóng</button>
             </div>
           </div>
         </div>

@@ -178,7 +178,7 @@ export function PostEditor({ isNew = true, postId = null }) {
         };
         input.click();
       },
-      table: () => insertHTML(`<table border="1" style="border-collapse:collapse;width:100%;margin:8px 0"><tr><th style="padding:6px 12px">Header 1</th><th style="padding:6px 12px">Header 2</th></tr><tr><td style="padding:6px 12px">Data 1</td><td style="padding:6px 12px">Data 2</td></tr></table>`),
+      table: () => insertHTML(`<table border="1" style="border-collapse:collapse;width:100%;margin:8px 0"><tr><th style="padding:6px 12px">Tiêu đề 1</th><th style="padding:6px 12px">Tiêu đề 2</th></tr><tr><td style="padding:6px 12px">Dữ liệu 1</td><td style="padding:6px 12px">Dữ liệu 2</td></tr></table>`),
       hr:  () => insertHTML('<hr />'),
       br:  () => insertHTML('<br />'),
     };
@@ -355,7 +355,7 @@ export function PostEditor({ isNew = true, postId = null }) {
         }
       }
 
-      setSuccess(status === 'published' ? '🚀 Post published successfully!' : '💾 Draft saved successfully!');
+      setSuccess(status === 'published' ? '🚀 Post published successfully!' : '💾 Đã lưu bản nháp!');
       if (isNew) setTimeout(() => router.push('/admin/posts'), 1200);
     } catch (err) {
       setError('Connection failed: ' + err.message);
@@ -387,7 +387,7 @@ export function PostEditor({ isNew = true, postId = null }) {
 
   if (loading) {
     return (
-      <AdminShell title="Loading post editor...">
+      <AdminShell title="Đang tải trình soạn thảo...">
         <div style={{ display: 'flex', justifyContent: 'center', padding: '60px' }}>
           <div style={{ width: '40px', height: '40px', border: '3px solid rgba(139, 92, 246, 0.2)', borderTopColor: 'var(--admin-primary)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
         </div>
@@ -396,7 +396,7 @@ export function PostEditor({ isNew = true, postId = null }) {
   }
 
   return (
-    <AdminShell title={isNew ? 'Write New Changelog' : 'Edit Changelog Post'}>
+    <AdminShell title={isNew ? 'Viết bài mới' : 'Sửa bài viết'}>
       <div className="post-editor-layout">
         {/* ─── MAIN COLUMN ─── */}
         <div className="post-editor-main">
@@ -407,21 +407,21 @@ export function PostEditor({ isNew = true, postId = null }) {
           <div className="adm-card">
             <div className="adm-card-body" style={{display:'flex',flexDirection:'column',gap:12, padding: 20}}>
               <div className="adm-form-group" style={{marginBottom:0}}>
-                <label className="adm-label">Title *</label>
+                <label className="adm-label">Tiêu đề *</label>
                 <input
                   className="adm-input post-title-input"
                   type="text"
-                  placeholder="Enter update title..."
+                  placeholder="Nhập tiêu đề bài viết..."
                   value={form.title}
                   onChange={e => setForm({ ...form, title: e.target.value })}
                 />
               </div>
               <div className="adm-form-group" style={{marginBottom:0}}>
-                <label className="adm-label">Short Summary</label>
+                <label className="adm-label">Tóm tắt ngắn</label>
                 <textarea
                   className="adm-input adm-textarea"
                   style={{minHeight:64,fontSize:13,resize:'vertical'}}
-                  placeholder="Enter a brief summary..."
+                  placeholder="Nhập tóm tắt ngắn..."
                   value={form.summary}
                   onChange={e => setForm({ ...form, summary: e.target.value })}
                 />
@@ -432,7 +432,7 @@ export function PostEditor({ isNew = true, postId = null }) {
           {/* Content Editor */}
           <div className="adm-card">
             <div className="adm-card-header" style={{padding:'12px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <div className="adm-card-title" style={{fontSize:13}}>📝 Changelog Body Content</div>
+              <div className="adm-card-title" style={{fontSize:13}}>📝 Nội dung bài viết</div>
               <button
                 type="button"
                 className={`btn btn-sm ${showPreview ? 'btn-primary' : 'btn-secondary'}`}
@@ -458,8 +458,8 @@ export function PostEditor({ isNew = true, postId = null }) {
                       )
                   )}
                   <span style={{flex:1}} />
-                  {/* HTML Source Toggle */}
-                  <button type="button" className="editor-btn" title="View Source Code"
+                  {/* Mã HTML Toggle */}
+                  <button type="button" className="editor-btn" title="Xem mã nguồn"
                     style={{fontSize:10,width:'auto',padding:'2px 8px',background: showHtml ? 'var(--admin-primary)' : 'transparent'}}
                     onMouseDown={e => {
                       e.preventDefault();
@@ -472,7 +472,7 @@ export function PostEditor({ isNew = true, postId = null }) {
                         }, 0);
                       }
                     }}>
-                    &lt;/&gt; HTML Source
+                    &lt;/&gt; Mã HTML
                   </button>
                 </div>
 
@@ -498,7 +498,7 @@ export function PostEditor({ isNew = true, postId = null }) {
                     onInput={syncContent}
                     onPaste={handlePaste}
                     onBlur={syncContent}
-                    data-placeholder="Start writing changelog body. Screenshots/Images can be pasted directly (Ctrl+V)..."
+                    data-placeholder="Bắt đầu viết nội dung. Có thể dán ảnh chụp trực tiếp (Ctrl+V)..."
                     style={{
                       minHeight:340,
                       padding:'16px',
@@ -512,43 +512,43 @@ export function PostEditor({ isNew = true, postId = null }) {
             ) : (
               <div className="adm-card-body"
                 style={{minHeight:200,lineHeight:1.8,color:'var(--admin-text)', padding: 20}}
-                dangerouslySetInnerHTML={{ __html: form.content || '<p style="color:var(--admin-muted)">No content written yet...</p>' }}
+                dangerouslySetInnerHTML={{ __html: form.content || '<p style="color:var(--admin-muted)">Chưa có nội dung...</p>' }}
               />
             )}
           </div>
 
           {/* SEO Options */}
           <div className="adm-card" style={{ padding: 20 }}>
-            <h4 style={{ fontSize: '14px', color: '#fff', marginBottom: '12px', fontWeight: '700' }}>🔍 Post SEO Configuration</h4>
+            <h4 style={{ fontSize: '14px', color: '#fff', marginBottom: '12px', fontWeight: '700' }}>🔍 Cấu hình SEO bài viết</h4>
             
             <div className="adm-form-group">
-              <label className="adm-label">Meta Title</label>
+              <label className="adm-label">Tiêu đề Meta</label>
               <input
                 type="text"
                 className="adm-input"
-                placeholder="Custom metadata browser tab title..."
+                placeholder="Tiêu đề tab trình duyệt..."
                 value={form.meta_title}
                 onChange={e => setForm({ ...form, meta_title: e.target.value })}
               />
             </div>
 
             <div className="adm-form-group">
-              <label className="adm-label">Meta Description</label>
+              <label className="adm-label">Mô tả Meta</label>
               <textarea
                 className="adm-textarea"
                 rows={3}
-                placeholder="Google index snippet snippet description..."
+                placeholder="Đoạn mô tả hiển thị trên Google..."
                 value={form.meta_description}
                 onChange={e => setForm({ ...form, meta_description: e.target.value })}
               />
             </div>
 
             <div className="adm-form-group">
-              <label className="adm-label">Meta Keywords</label>
+              <label className="adm-label">Từ khóa Meta</label>
               <input
                 type="text"
                 className="adm-input"
-                placeholder="Comma separated search keywords..."
+                placeholder="Các từ khóa, cách nhau bằng dấu phẩy..."
                 value={form.meta_keywords}
                 onChange={e => setForm({ ...form, meta_keywords: e.target.value })}
               />
@@ -578,8 +578,8 @@ export function PostEditor({ isNew = true, postId = null }) {
               <input ref={attachRef} type="file" multiple style={{display:'none'}} onChange={handleAttachFiles} />
               <div style={{color:'var(--admin-muted)',fontSize:13}}>
                 <div style={{fontSize:28,marginBottom:4}}>📁</div>
-                <div>Drag & drop asset files here or <span style={{color:'var(--admin-primary)',cursor:'pointer'}}>click to browse</span></div>
-                <div style={{fontSize:11,marginTop:4}}>Max limit: <strong>{MAX_SIZE_MB}MB</strong> per file</div>
+                <div>Kéo thả tệp vào đây hoặc <span style={{color:'var(--admin-primary)',cursor:'pointer'}}>click to browse</span></div>
+                <div style={{fontSize:11,marginTop:4}}>Giới hạn tối đa: <strong>{MAX_SIZE_MB}MB</strong> per file</div>
               </div>
             </div>
 
@@ -611,7 +611,7 @@ export function PostEditor({ isNew = true, postId = null }) {
                       </div>
                     </div>
                     <div style={{display:'flex',gap:4,flexShrink:0}}>
-                      <button type="button" className="btn btn-secondary btn-sm btn-icon" title="Insert download link into editor body"
+                      <button type="button" className="btn btn-secondary btn-sm btn-icon" title="Chèn link tải xuống vào nội dung"
                         onClick={() => {
                           if (file.file_type === 'image') {
                             insertHTML(`<img src="${file.url}" alt="${file.name}" style="max-width:100%;border-radius:8px;margin:8px 0" />`);
@@ -619,8 +619,8 @@ export function PostEditor({ isNew = true, postId = null }) {
                             insertHTML(`<a href="${file.url}" target="_blank" style="color:var(--admin-primary);text-decoration:underline">📎 ${file.name}</a>`);
                           }
                           showMsg('success', 'Inserted asset tag to post content');
-                        }}>📥 Insert</button>
-                      <a href={file.url} target="_blank" className="btn btn-secondary btn-sm btn-icon" title="View File">👁️</a>
+                        }}>📥 Chèn</button>
+                      <a href={file.url} target="_blank" className="btn btn-secondary btn-sm btn-icon" title="Xem tệp">👁️</a>
                       <button type="button" className="btn btn-danger btn-sm btn-icon" title="Delete"
                         onClick={() => removeAttachment(file.id)}>🗑️</button>
                     </div>
@@ -638,15 +638,15 @@ export function PostEditor({ isNew = true, postId = null }) {
             <div className="adm-card-body" style={{display:'flex',flexDirection:'column',gap:8, padding: 20}}>
               <button className="btn btn-primary" onClick={() => handleSave('published')}
                 disabled={saving} style={{width:'100%',justifyContent:'center'}}>
-                {saving ? '⏳ Saving...' : '🚀 Publish Now'}
+                {saving ? '⏳ Đang lưu...' : '🚀 Đăng ngay'}
               </button>
               <button className="btn btn-secondary" onClick={() => handleSave('draft')}
                 disabled={saving} style={{width:'100%',justifyContent:'center'}}>
-                💾 Save as Draft
+                💾 Lưu nháp
               </button>
               <Link href="/admin/posts" className="btn btn-secondary"
                 style={{width:'100%',justifyContent:'center',textDecoration:'none', textAlign: 'center'}}>
-                ← Cancel & Back
+                ← Hủy & Back
               </Link>
             </div>
           </div>
@@ -654,7 +654,7 @@ export function PostEditor({ isNew = true, postId = null }) {
           {/* Featured Image Thumbnail Panel */}
           <div className="adm-card">
             <div className="adm-card-header" style={{padding:'12px 20px'}}>
-              <div className="adm-card-title" style={{fontSize:13}}>🖼️ Featured Thumbnail Image</div>
+              <div className="adm-card-title" style={{fontSize:13}}>🖼️ Ảnh đại diện</div>
             </div>
             <div className="adm-card-body" style={{padding: 20, display:'flex',flexDirection:'column',gap:8}}>
               {imgPreview ? (
@@ -668,13 +668,13 @@ export function PostEditor({ isNew = true, postId = null }) {
                   style={{padding:'20px 12px'}}>
                   <div style={{textAlign:'center',color:'var(--admin-muted)',fontSize:12}}>
                     <div style={{fontSize:24}}>📷</div>
-                    <div>Click to select image file</div>
-                    <div style={{fontSize:10,marginTop:2}}>PNG, JPG, WebP — Max 10MB</div>
+                    <div>Bấm để chọn tệp ảnh</div>
+                    <div style={{fontSize:10,marginTop:2}}>PNG, JPG, WebP — Tối đa 10MB</div>
                   </div>
                 </div>
               )}
               <input ref={imgRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleImgFile} />
-              <input className="adm-input" type="text" placeholder="Or paste absolute image URL..."
+              <input className="adm-input" type="text" placeholder="Hoặc dán link ảnh..."
                 style={{fontSize:12}} value={form.image}
                 onChange={e => { setForm({ ...form, image: e.target.value }); setImgPreview(e.target.value); }} />
             </div>

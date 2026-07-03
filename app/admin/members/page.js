@@ -102,24 +102,24 @@ export default function MembersPage() {
 
         <div className="adm-table-wrap">
           {loading ? (
-            <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Loading directory...</div>
+            <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Đang tải...</div>
           ) : members.length === 0 ? (
             <div className="adm-empty">
               <div className="adm-empty-icon">👥</div>
-              <div className="adm-empty-text">No registered members found</div>
+              <div className="adm-empty-text">Chưa có thành viên nào</div>
             </div>
           ) : (
             <table className="adm-table">
               <thead>
                 <tr>
-                  <th>Display Name</th>
-                  <th>Username</th>
+                  <th>Tên hiển thị</th>
+                  <th>Tên đăng nhập</th>
                   <th>Email</th>
-                  <th>Tier Rank</th>
-                  <th>System Role</th>
-                  <th>Status</th>
-                  <th>Joined Date</th>
-                  <th>Actions</th>
+                  <th>Hạng</th>
+                  <th>Vai trò</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày tham gia</th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -138,9 +138,9 @@ export default function MembersPage() {
                             onChange={e => setEditForm({ ...editForm, tier: e.target.value })}
                             style={{ padding: '4px 8px', fontSize: '12px' }}
                           >
-                            <option value="Free">Free Plan</option>
-                            <option value="Pro">Pro Plan</option>
-                            <option value="Enterprise">Enterprise Plan</option>
+                            <option value="Free">Gói Free</option>
+                            <option value="Pro">Gói Pro</option>
+                            <option value="Enterprise">Gói Enterprise</option>
                           </select>
                         ) : (
                           <span className="tier-tag">{m.tier}</span>
@@ -154,9 +154,9 @@ export default function MembersPage() {
                             onChange={e => setEditForm({ ...editForm, role: e.target.value })}
                             style={{ padding: '4px 8px', fontSize: '12px' }}
                           >
-                            <option value="member">Member</option>
-                            <option value="mod">Mod</option>
-                            <option value="admin">Admin</option>
+                            <option value="member">Thành viên</option>
+                            <option value="mod">Điều hành</option>
+                            <option value="admin">Quản trị</option>
                           </select>
                         ) : (
                           <span className={`badge ${m.role === 'admin' ? 'badge-red' : m.role === 'mod' ? 'badge-blue' : 'badge-green'}`}>
@@ -186,8 +186,8 @@ export default function MembersPage() {
                       <td>
                         {isEditing ? (
                           <div style={{ display: 'flex', gap: 6 }}>
-                            <button className="btn btn-primary btn-sm" onClick={() => saveEdit(m.id)}>Save</button>
-                            <button className="btn btn-secondary btn-sm" onClick={() => setEditingId(null)}>Cancel</button>
+                            <button className="btn btn-primary btn-sm" onClick={() => saveEdit(m.id)}>Lưu</button>
+                            <button className="btn btn-secondary btn-sm" onClick={() => setEditingId(null)}>Hủy</button>
                           </div>
                         ) : (
                           <div style={{ display: 'flex', gap: 6 }}>

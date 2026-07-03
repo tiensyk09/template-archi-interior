@@ -196,30 +196,30 @@ export default function PagesManagement() {
       {view === 'list' && (
         <div className="adm-card">
           <div className="adm-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div className="adm-card-title">📄 Dynamic Custom Pages ({pages.length})</div>
+            <div className="adm-card-title">📄 Trang tùy chỉnh ({pages.length})</div>
             <button className="btn btn-primary btn-sm" onClick={handleCreateClick}>
-              + Create New Page
+              + Tạo trang mới
             </button>
           </div>
 
           <div className="adm-table-wrap">
             {loading ? (
-              <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Loading pages...</div>
+              <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-muted)' }}>Đang tải...</div>
             ) : pages.length === 0 ? (
               <div className="adm-empty">
                 <div className="adm-empty-icon">📄</div>
-                <div className="adm-empty-text">No custom pages created yet</div>
+                <div className="adm-empty-text">Chưa tạo trang nào</div>
               </div>
             ) : (
               <table className="adm-table">
                 <thead>
                   <tr>
-                    <th>Page Title</th>
-                    <th>Url Slug</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Last Updated</th>
-                    <th>Actions</th>
+                    <th>Tiêu đề trang</th>
+                    <th>Đường dẫn URL</th>
+                    <th>Mô tả</th>
+                    <th>Trạng thái</th>
+                    <th>Cập nhật lần cuối</th>
+                    <th>Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -242,10 +242,10 @@ export default function PagesManagement() {
                       </td>
                       <td>
                         <div style={{ display: 'flex', gap: 6 }}>
-                          <button className="btn btn-primary btn-sm" title="Edit layout blocks" onClick={() => handleEditLayoutClick(p)}>
-                            🎨 Edit Blocks
+                          <button className="btn btn-primary btn-sm" title="Sửa bố cục khối" onClick={() => handleEditLayoutClick(p)}>
+                            🎨 Sửa khối
                           </button>
-                          <button className="btn btn-secondary btn-sm" title="Edit settings" onClick={() => handleEditSettingsClick(p)}>
+                          <button className="btn btn-secondary btn-sm" title="Sửa cài đặt" onClick={() => handleEditSettingsClick(p)}>
                             ✏️ Settings
                           </button>
                           <button
@@ -277,13 +277,13 @@ export default function PagesManagement() {
           </div>
           <form onSubmit={view === 'create' ? handleCreateSubmit : handleUpdateSettings} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Page Title</label>
+              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Tiêu đề trang</label>
               <input
                 type="text"
                 required
                 value={form.title}
                 onChange={e => setForm({ ...form, title: e.target.value })}
-                placeholder="e.g. Developer Docs"
+                placeholder="vd. Trang giới thiệu"
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
@@ -297,12 +297,12 @@ export default function PagesManagement() {
             </div>
 
             <div>
-              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>URL Slug</label>
+              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Đường dẫn URL</label>
               <input
                 type="text"
                 value={form.slug}
                 onChange={e => setForm({ ...form, slug: e.target.value })}
-                placeholder="e.g. docs (leave blank to auto-generate from title)"
+                placeholder="vd. gioi-thieu (để trống sẽ tự tạo từ tiêu đề)"
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
@@ -317,11 +317,11 @@ export default function PagesManagement() {
             </div>
 
             <div>
-              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>SEO Description (General)</label>
+              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Mô tả SEO (chung)</label>
               <textarea
                 value={form.description}
                 onChange={e => setForm({ ...form, description: e.target.value })}
-                placeholder="A short description of the page content..."
+                placeholder="Mô tả ngắn về nội dung trang..."
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
@@ -337,15 +337,15 @@ export default function PagesManagement() {
             </div>
 
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '8px' }}>
-              <h4 style={{ fontSize: '14px', color: 'var(--primary)', marginBottom: '12px' }}>🔍 Search Engine Optimization (SEO)</h4>
+              <h4 style={{ fontSize: '14px', color: 'var(--primary)', marginBottom: '12px' }}>🔍 Tối ưu công cụ tìm kiếm (SEO)</h4>
               
               <div style={{ marginBottom: '12px' }}>
-                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Meta Search Title</label>
+                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Tiêu đề SEO</label>
                 <input
                   type="text"
                   value={form.meta_title}
                   onChange={e => setForm({ ...form, meta_title: e.target.value })}
-                  placeholder="e.g. My Custom Page Title | Command Code"
+                  placeholder="vd. Tiêu đề trang tùy chỉnh"
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
@@ -359,11 +359,11 @@ export default function PagesManagement() {
               </div>
 
               <div style={{ marginBottom: '12px' }}>
-                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Meta Search Description</label>
+                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Mô tả SEO</label>
                 <textarea
                   value={form.meta_description}
                   onChange={e => setForm({ ...form, meta_description: e.target.value })}
-                  placeholder="Detailed snippet that search engines display under the page title link..."
+                  placeholder="Đoạn mô tả hiển thị dưới tiêu đề trang trên công cụ tìm kiếm..."
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
@@ -379,12 +379,12 @@ export default function PagesManagement() {
               </div>
 
               <div>
-                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Meta Search Keywords</label>
+                <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Từ khóa SEO</label>
                 <input
                   type="text"
                   value={form.meta_keywords}
                   onChange={e => setForm({ ...form, meta_keywords: e.target.value })}
-                  placeholder="e.g. documentation, api setup, codes"
+                  placeholder="vd. bất động sản, mua bán nhà đất"
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
@@ -399,7 +399,7 @@ export default function PagesManagement() {
             </div>
 
             <div>
-              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Status</label>
+              <label className="adm-filter-label" style={{ display: 'block', marginBottom: '6px' }}>Trạng thái</label>
               <select
                 className="adm-filter-select"
                 value={form.status}
@@ -414,18 +414,16 @@ export default function PagesManagement() {
                   outline: 'none'
                 }}
               >
-                <option value="published">Published</option>
-                <option value="draft">Draft</option>
+                <option value="published">Đã đăng</option>
+                <option value="draft">Bản nháp</option>
               </select>
             </div>
 
             <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
               <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? 'Saving...' : 'Save Settings'}
+                {submitting ? 'Đang lưu...' : 'Save Settings'}
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setView('list')}>
-                Cancel
-              </button>
+              <button type="button" className="btn btn-secondary" onClick={() => setView('list')}>Hủy</button>
             </div>
           </form>
         </div>

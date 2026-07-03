@@ -100,7 +100,7 @@ export default function ProfilePage() {
     <AdminShell title="Hồ sơ của tôi">
       <div className="adm-card">
         <div className="adm-card-header">
-          <div className="adm-card-title">👤 Edit Profile Settings</div>
+          <div className="adm-card-title">👤 Chỉnh sửa hồ sơ</div>
         </div>
         <div className="adm-card-body">
           {errorMsg && <div className="adm-alert adm-alert-error">⚠️ {errorMsg}</div>}
@@ -108,47 +108,47 @@ export default function ProfilePage() {
 
           <form onSubmit={handleUpdateProfile} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div className="adm-form-group">
-              <label className="adm-label">Username</label>
+              <label className="adm-label">Tên đăng nhập</label>
               <input type="text" className="adm-input" value={user?.username || ''} disabled style={{ background: '#f1f5f9', cursor: 'not-allowed', color: 'var(--admin-muted)', border: '1px solid #cbd5e1' }} />
-              <span style={{ fontSize: '11px', color: 'var(--admin-muted)' }}>Username cannot be changed.</span>
+              <span style={{ fontSize: '11px', color: 'var(--admin-muted)' }}>Không thể đổi tên đăng nhập.</span>
             </div>
 
             <div className="adm-form-group">
-              <label className="adm-label">Display Name <span style={{ color: 'var(--admin-danger)' }}>*</span></label>
-              <input type="text" className="adm-input" value={displayName} onChange={e => setDisplayName(e.target.value)} required placeholder="Your name..." style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
+              <label className="adm-label">Tên hiển thị <span style={{ color: 'var(--admin-danger)' }}>*</span></label>
+              <input type="text" className="adm-input" value={displayName} onChange={e => setDisplayName(e.target.value)} required placeholder="Tên của bạn..." style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
             </div>
 
             <div className="adm-form-group">
-              <label className="adm-label">Email Address</label>
+              <label className="adm-label">Địa chỉ email</label>
               <input type="email" className="adm-input" value={email} onChange={e => setEmail(e.target.value)} placeholder="yourname@example.com" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
             </div>
 
             <div style={{ borderTop: '1px solid var(--admin-border)', padding: '10px 0' }} />
 
-            <h4 style={{ color: 'var(--admin-text)', fontSize: '16px', fontWeight: '700' }}>🔐 Change Password</h4>
+            <h4 style={{ color: 'var(--admin-text)', fontSize: '16px', fontWeight: '700' }}>🔐 Đổi mật khẩu</h4>
             <span style={{ fontSize: '12px', color: 'var(--admin-muted)', display: 'block', lineHeight: '1.5' }}>
               Only fill out these fields if you want to update your current password. Passwords must be at least 8 characters long, contain at least 1 uppercase letter, and at least 1 special character.
             </span>
 
             <div className="adm-form-group">
-              <label className="adm-label">Current Password</label>
-              <input type="password" className="adm-input" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} placeholder="Enter current password..." autoComplete="current-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
+              <label className="adm-label">Mật khẩu hiện tại</label>
+              <input type="password" className="adm-input" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} placeholder="Nhập mật khẩu hiện tại..." autoComplete="current-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
               <div className="adm-form-group">
-                <label className="adm-label">New Password</label>
-                <input type="password" className="adm-input" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Enter new password..." autoComplete="new-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
+                <label className="adm-label">Mật khẩu mới</label>
+                <input type="password" className="adm-input" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Nhập mật khẩu mới..." autoComplete="new-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
               </div>
               <div className="adm-form-group">
-                <label className="adm-label">Confirm New Password</label>
-                <input type="password" className="adm-input" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Re-type new password..." autoComplete="new-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
+                <label className="adm-label">Xác nhận mật khẩu mới</label>
+                <input type="password" className="adm-input" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Nhập lại mật khẩu mới..." autoComplete="new-password" style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: 'var(--admin-text)' }} />
               </div>
             </div>
 
             <div style={{ marginTop: '10px' }}>
               <button type="submit" className="btn btn-primary" disabled={saving}>
-                {saving ? 'Saving changes...' : '💾 Save Settings'}
+                {saving ? 'Saving changes...' : '💾 Lưu cài đặt'}
               </button>
             </div>
           </form>
