@@ -461,7 +461,7 @@ export default function AdminPluginsPage() {
       {toastMsg && (
         <div style={{
           position: 'fixed', bottom: '24px', right: '24px', zIndex: 1000,
-          background: '#0f172a', border: '1px solid var(--admin-primary)',
+          background: 'var(--admin-primary)', border: '1px solid var(--admin-primary)',
           color: '#ffffff', padding: '14px 24px', borderRadius: '10px',
           fontSize: '13px', fontWeight: '700', boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
           animation: 'slideUp 0.3s ease-out'

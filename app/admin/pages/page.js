@@ -287,7 +287,7 @@ export default function PagesManagement() {
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid var(--border)',
+                  border: '1px solid var(--admin-border)',
                   borderRadius: '6px',
                   padding: '10px 14px',
                   color: 'var(--foreground)',
@@ -306,7 +306,7 @@ export default function PagesManagement() {
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid var(--border)',
+                  border: '1px solid var(--admin-border)',
                   borderRadius: '6px',
                   padding: '10px 14px',
                   color: 'var(--foreground)',
@@ -325,7 +325,7 @@ export default function PagesManagement() {
                 style={{
                   width: '100%',
                   background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid var(--border)',
+                  border: '1px solid var(--admin-border)',
                   borderRadius: '6px',
                   padding: '10px 14px',
                   color: 'var(--foreground)',
@@ -336,7 +336,7 @@ export default function PagesManagement() {
               />
             </div>
 
-            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '8px' }}>
+            <div style={{ borderTop: '1px solid var(--admin-border)', paddingTop: '16px', marginTop: '8px' }}>
               <h4 style={{ fontSize: '14px', color: 'var(--primary)', marginBottom: '12px' }}>🔍 Tối ưu công cụ tìm kiếm (SEO)</h4>
               
               <div style={{ marginBottom: '12px' }}>
@@ -349,7 +349,7 @@ export default function PagesManagement() {
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border)',
+                    border: '1px solid var(--admin-border)',
                     borderRadius: '6px',
                     padding: '10px 14px',
                     color: 'var(--foreground)',
@@ -367,7 +367,7 @@ export default function PagesManagement() {
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border)',
+                    border: '1px solid var(--admin-border)',
                     borderRadius: '6px',
                     padding: '10px 14px',
                     color: 'var(--foreground)',
@@ -388,7 +388,7 @@ export default function PagesManagement() {
                   style={{
                     width: '100%',
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border)',
+                    border: '1px solid var(--admin-border)',
                     borderRadius: '6px',
                     padding: '10px 14px',
                     color: 'var(--foreground)',
@@ -406,8 +406,8 @@ export default function PagesManagement() {
                 onChange={e => setForm({ ...form, status: e.target.value })}
                 style={{
                   width: '100%',
-                  background: '#09090b',
-                  border: '1px solid var(--border)',
+                  background: 'var(--admin-card-bg)',
+                  border: '1px solid var(--admin-border)',
                   borderRadius: '6px',
                   padding: '10px 14px',
                   color: 'var(--foreground)',

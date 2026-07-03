@@ -329,15 +329,15 @@ export default function FilesPage() {
             </div>
             <select className="adm-filter-select" value={filterType} onChange={e => setFilterType(e.target.value)}>
               <option value="">Tất cả loại</option>
-              <option value="image">🖼️ Images</option>
-              <option value="video">🎬 Videos</option>
+              <option value="image">🖼️ Hình ảnh</option>
+              <option value="video">🎬 Video</option>
               <option value="pdf">📕 PDF</option>
-              <option value="word">📘 Word docs</option>
-              <option value="excel">📊 Excel spreadsheets</option>
+              <option value="word">📘 Word</option>
+              <option value="excel">📊 Excel</option>
               <option value="powerpoint">📙 PowerPoint</option>
-              <option value="archive">📦 Archives</option>
-              <option value="audio">🎵 Audio files</option>
-              <option value="text">📄 Text files</option>
+              <option value="archive">📦 Nén (Zip/Rar)</option>
+              <option value="audio">🎵 Âm thanh</option>
+              <option value="text">📄 Văn bản</option>
               <option value="other">📎 Others</option>
             </select>
 
@@ -502,19 +502,19 @@ export default function FilesPage() {
       {/* Upload modal */}
       {showModal && (
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '90%' }}>
+          <div className="adm-modal" style={{ background: 'var(--admin-card-bg)', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '90%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>📤 Tải tệp mới lên</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: 'var(--admin-text)' }}>📤 Tải tệp mới lên</div>
               <button className="adm-modal-close" onClick={() => setShowModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <form onSubmit={handleUpload}>
               <div className="adm-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Chọn tệp từ máy</label>
-                  <div className="img-upload-zone" onClick={() => fileRef.current?.click()} style={{ border: '2px dashed #475569', background: 'rgba(255, 255, 255, 0.03)', color: '#e2e8f0', cursor: 'pointer', padding: '20px', borderRadius: '8px', textAlign: 'center' }}>
+                  <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Chọn tệp từ máy</label>
+                  <div className="img-upload-zone" onClick={() => fileRef.current?.click()} style={{ border: '2px dashed var(--admin-border)', background: 'var(--admin-bg)', color: 'var(--admin-text)', cursor: 'pointer', padding: '20px', borderRadius: '8px', textAlign: 'center' }}>
                     <div className="img-upload-icon" style={{ fontSize: '24px', marginBottom: '8px' }}>📁</div>
-                    <div className="img-upload-text" style={{ color: '#cbd5e1' }}>Bấm để chọn tệp<br />
-                      <span style={{ fontSize: 11, color: '#94a3b8' }}>Images, PDF, Documents, Code — Max 10MB</span>
+                    <div className="img-upload-text" style={{ color: 'var(--admin-text)' }}>Bấm để chọn tệp<br />
+                      <span style={{ fontSize: 11, color: 'var(--admin-muted)' }}>Images, PDF, Documents, Code — Max 10MB</span>
                     </div>
                   </div>
                   <input ref={fileRef} type="file" style={{ display: 'none' }} onChange={handleFileInput} />
@@ -527,19 +527,19 @@ export default function FilesPage() {
                 )}
 
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Or enter direct URL</label>
+                  <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Hoặc dán link trực tiếp</label>
                   <input className="adm-input" placeholder="https://..." value={form.url}
                     onChange={e => { setForm({ ...form, url: e.target.value }); setImgPreview(e.target.value); }} />
                 </div>
 
                 <div style={{ display: 'flex', gap: '16px' }}>
                   <div className="adm-form-group" style={{ flex: 1 }}>
-                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Tên hiển thị *</label>
+                    <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Tên hiển thị *</label>
                     <input className="adm-input" value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })} required />
                   </div>
                   <div className="adm-form-group" style={{ flex: 1 }}>
-                    <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Danh mục lưu trữ</label>
+                    <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Danh mục lưu trữ</label>
                     <select className="adm-select" value={form.folder}
                       onChange={e => setForm({ ...form, folder: e.target.value })}>
                       {categories.map(c => (
@@ -550,10 +550,10 @@ export default function FilesPage() {
                 </div>
 
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Loại tệp</label>
+                  <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Loại tệp</label>
                   <select className="adm-select" value={form.type}
                     onChange={e => setForm({ ...form, type: e.target.value })}>
-                    <option value="image">🖼️ Image</option>
+                    <option value="image">🖼️ Hình ảnh</option>
                     <option value="video">🎬 Video</option>
                     <option value="pdf">📕 PDF</option>
                     <option value="word">📘 Word Doc</option>
@@ -567,7 +567,7 @@ export default function FilesPage() {
                 </div>
 
                 <div className="adm-form-group">
-                  <label className="adm-label" style={{ color: '#cbd5e1', fontSize: '13px', fontWeight: '600' }}>Mô tả</label>
+                  <label className="adm-label" style={{ color: 'var(--admin-text)', fontSize: '13px', fontWeight: '600' }}>Mô tả</label>
                   <textarea className="adm-textarea" style={{ minHeight: 60 }} placeholder="Nhập mô tả ngắn..." value={form.description}
                     onChange={e => setForm({ ...form, description: e.target.value })} />
                 </div>
@@ -575,7 +575,7 @@ export default function FilesPage() {
                 <div className="adm-form-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}>
                   <input type="checkbox" id="upload-is-public" checked={form.is_public === 1}
                     onChange={e => setForm({ ...form, is_public: e.target.checked ? 1 : 0 })} style={{ width: 'auto', margin: 0 }} />
-                  <label htmlFor="upload-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13, color: '#cbd5e1', fontWeight: '600' }}>Chia sẻ công khai (cho phép khách tải xuống)</label>
+                  <label htmlFor="upload-is-public" className="adm-label" style={{ marginBottom: 0, cursor: 'pointer', fontSize: 13, color: 'var(--admin-text)', fontWeight: '600' }}>Chia sẻ công khai (cho phép khách tải xuống)</label>
                 </div>
               </div>
               <div className="adm-modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '20px' }}>
@@ -592,9 +592,9 @@ export default function FilesPage() {
       {/* Edit File Metadata modal */}
       {showEditModal && editingFile && (
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '95%' }}>
+          <div className="adm-modal" style={{ background: 'var(--admin-card-bg)', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '95%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>✏️ Sửa thông tin tệp</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: 'var(--admin-text)' }}>✏️ Sửa thông tin tệp</div>
               <button className="adm-modal-close" onClick={() => setShowEditModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <form onSubmit={handleEditFile}>
@@ -646,9 +646,9 @@ export default function FilesPage() {
       {/* Share Links modal */}
       {showShareModal && sharingFile && (
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '95%' }}>
+          <div className="adm-modal" style={{ background: 'var(--admin-card-bg)', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '500px', maxWidth: '95%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>🔗 Share Asset: {sharingFile.name}</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: 'var(--admin-text)' }}>🔗 Share Asset: {sharingFile.name}</div>
               <button className="adm-modal-close" onClick={() => setShowShareModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <div className="adm-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -715,14 +715,14 @@ export default function FilesPage() {
       {/* Category Manager modal */}
       {showCatModal && (
         <div className="adm-modal-backdrop" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="adm-modal" style={{ background: '#0e0e11', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '600px', maxWidth: '95%' }}>
+          <div className="adm-modal" style={{ background: 'var(--admin-card-bg)', border: '1px solid var(--admin-border)', borderRadius: '16px', padding: '24px', width: '600px', maxWidth: '95%' }}>
             <div className="adm-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>🗂️ Manage File Categories</div>
+              <div className="adm-modal-title" style={{ fontSize: '16px', fontWeight: '700', color: 'var(--admin-text)' }}>🗂️ Manage File Categories</div>
               <button className="adm-modal-close" onClick={() => setShowCatModal(false)} style={{ background: 'transparent', border: 'none', color: 'var(--admin-muted)', fontSize: '24px', cursor: 'pointer' }}>×</button>
             </div>
             <div className="adm-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {/* Form add/edit categories */}
-              <form onSubmit={handleCatSubmit} style={{ background: 'rgba(255,255,255,0.02)', padding: 14, borderRadius: 8, border: '1px solid var(--admin-border)' }}>
+              <form onSubmit={handleCatSubmit} style={{ background: 'var(--admin-bg)', padding: 14, borderRadius: 8, border: '1px solid var(--admin-border)' }}>
                 <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 10, color: 'var(--admin-primary)' }}>
                   {editingCatId ? '✏️ Update Category' : '➕ Add New Category'}
                 </div>
