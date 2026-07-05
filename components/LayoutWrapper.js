@@ -2,6 +2,7 @@
 import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { LiveEditorProvider } from '@/components/LiveEditor';
 
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
@@ -14,12 +15,12 @@ export default function LayoutWrapper({ children }) {
   }
 
   return (
-    <>
+    <LiveEditorProvider>
       <Header />
       <main className="flex-grow">
         {children}
       </main>
       <Footer />
-    </>
+    </LiveEditorProvider>
   );
 }

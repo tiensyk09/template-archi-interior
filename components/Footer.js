@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { LogoArchi, IconLocation, IconMail, IconGlobe, IconPhoneFilled, IconFacebook, IconInstagram, IconPinterest, IconYoutube } from '@/components/icons';
 import { SocialIcon, buildSocialLinks } from '@/components/SocialLinks';
+import { Editable } from '@/components/LiveEditor';
 
 const BRONZE = '#b08d57';
 const DARK = '#141414';
@@ -80,10 +81,8 @@ export default function Footer() {
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 16 }}>
               <LogoArchi size={42} color={BRONZE} />
               <div style={{ lineHeight: 1 }}>
-                <span style={{ display: 'block', fontSize: 22, fontWeight: 900, letterSpacing: '0.06em', color: '#fff' }}>ARCHI</span>
-                <span style={{ display: 'block', fontSize: 7.5, fontWeight: 700, letterSpacing: '0.2em', color: BRONZE, marginTop: 4, textTransform: 'uppercase' }}>
-                  Interior & Construction
-                </span>
+                <Editable k="brand_name1" def="ARCHI" as="span" style={{ display: 'block', fontSize: 22, fontWeight: 900, letterSpacing: '0.06em', color: '#fff' }} />
+                <Editable k="brand_name2" def="Interior & Construction" as="span" style={{ display: 'block', fontSize: 7.5, fontWeight: 700, letterSpacing: '0.2em', color: BRONZE, marginTop: 4, textTransform: 'uppercase' }} />
               </div>
             </Link>
             <p style={{ fontSize: 12.5, lineHeight: 1.75, fontWeight: 500, marginBottom: 18, maxWidth: 250 }}>
@@ -135,19 +134,19 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 13, fontSize: 12.5, fontWeight: 500 }}>
               <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                 <IconLocation size={16} style={{ flexShrink: 0, marginTop: 1, color: BRONZE }} />
-                <span>123 Đường Nguyễn Trãi,<br />Thanh Xuân, Hà Nội</span>
+                <Editable k="contact_address" def={"123 Đường Nguyễn Trãi,\nThanh Xuân, Hà Nội"} as="span" multiline />
               </li>
               <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <IconPhoneFilled size={15} style={{ flexShrink: 0, color: BRONZE }} />
-                <span style={{ color: '#fff', fontWeight: 800, fontSize: 13.5 }}>0988 123 456</span>
+                <Editable k="contact_phone" def="0988 123 456" as="span" style={{ color: '#fff', fontWeight: 800, fontSize: 13.5 }} />
               </li>
               <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <IconMail size={16} style={{ flexShrink: 0, color: BRONZE }} />
-                <span>info@noithatxaydung.vn</span>
+                <Editable k="contact_email" def="info@noithatxaydung.vn" as="span" />
               </li>
               <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <IconGlobe size={16} style={{ flexShrink: 0, color: BRONZE }} />
-                <span>www.noithatxaydung.vn</span>
+                <Editable k="contact_website" def="www.noithatxaydung.vn" as="span" />
               </li>
             </ul>
           </div>
