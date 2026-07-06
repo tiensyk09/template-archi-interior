@@ -76,7 +76,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#211d18', margin: '0 0 6px 0' }}>Trụ sở chính</h4>
-                  <p style={{ fontSize: '14px', color: '#4b5563', lineHeight: 1.5, margin: 0 }}>Xã Trà Linh, huyện Nam Trà My, tỉnh Quảng Nam</p>
+                  <p style={{ fontSize: '14px', color: '#4b5563', lineHeight: 1.5, margin: 0 }}>12 Trần Hưng Đạo, Phường Phan Chu Trinh, Quận Hoàn Kiếm, Hà Nội</p>
                 </div>
               </div>
 
@@ -116,7 +116,7 @@ export default function ContactPage() {
             <div style={{ background: 'linear-gradient(135deg, #b08d57 0%, #211d18 100%)', color: '#ffffff', borderRadius: '20px', padding: '28px', boxShadow: '0 4px 20px rgba(13, 104, 50, 0.1)' }}>
               <h4 style={{ fontSize: '15px', fontWeight: 800, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>ARCHI</h4>
               <p style={{ fontSize: '13px', lineHeight: 1.5, opacity: 0.9, margin: 0 }}>
-                Giấy chứng nhận đăng ký hộ kinh doanh số: 38B8000132 do Phòng Tài chính - Kế hoạch Huyện Nam Trà My - Tỉnh Quảng Nam cấp ngày 12/03/2019.
+                Giấy chứng nhận đăng ký hộ kinh doanh số: 38B8000132 do Sở Kế hoạch và Đầu tư TP. Hà Nội cấp ngày 12/03/2019.
               </p>
             </div>
 
