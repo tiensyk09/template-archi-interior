@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { getAuthUser, requireAuth } from '@/lib/auth';
+import { resolveUser } from '@/lib/apiAuth';
 
 // GET /api/posts — Retrieve published/all posts
 export async function GET(request) {
@@ -33,7 +34,7 @@ export async function GET(request) {
 
 // POST /api/posts — Create new post
 export async function POST(request) {
-  const user = await getAuthUser();
+  const user = await resolveUser(request, await getAuthUser());
   const authErr = requireAuth(user, 'mod'); // Mod or Admin
   if (authErr) return NextResponse.json({ error: authErr.error }, { status: authErr.status });
 
